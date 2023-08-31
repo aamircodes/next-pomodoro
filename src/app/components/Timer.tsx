@@ -26,13 +26,14 @@ export default function Timer({
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [completedPomodoros, setCompletedPomodoros] = useState(0);
 
-  const alarmRef = useRef<HTMLAudioElement>();
+  const alarmRef = useRef<HTMLAudioElement | null>(null);
   useEffect(() => {
     const timerInterval = isTimerRunning ? setInterval(tick, 1000) : null;
 
     return () => {
       if (timerInterval) clearInterval(timerInterval);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimerRunning, remainingSeconds, currentStage]);
 
   const tick = () => {
@@ -94,7 +95,7 @@ export default function Timer({
               className={`${
                 index === currentStage ? `bg-gray-500 bg-opacity-40` : ''
               } p-2 cursor-pointer rounded transition-all font-semibold`}
-              onClick={() => handleStageSwitch(index)}
+              onClick={() => handleStageSwitch(index as Stage)}
             >
               {stage.label}
             </h1>
