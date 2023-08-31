@@ -7,10 +7,6 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'FocusTime',
   description: 'A simple Pomodoro Timer app',
-  // openGraph: {
-  //   images: {
-  //   },
-  // },
 };
 
 export default function RootLayout({
